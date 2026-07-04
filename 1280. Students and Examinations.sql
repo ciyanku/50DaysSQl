@@ -1,4 +1,15 @@
-Table: Students
+solution:
+select a.student_id,a.student_name, b.subject_name,count(c.subject_name) as attended_exams
+from Students a
+cross join Subjects b
+left join Examinations c
+on a.student_id=c.student_id and b.subject_name=c.subject_name
+group by a.student_id,a.student_name,b.subject_name
+order by a.student_id , b.subject_name;
+
+
+Problem
+ Table: Students
 
 +---------------+---------+
 | Column Name   | Type    |
@@ -102,12 +113,3 @@ Bob attended the Math exam 1 time, the Programming exam 1 time, and did not atte
 Alex did not attend any exams.
 John attended the Math exam 1 time, the Physics exam 1 time, and the Programming exam 1 time.
 
-
-solution:
-select a.student_id,a.student_name, b.subject_name,count(c.subject_name) as attended_exams
-from Students a
-cross join Subjects b
-left join Examinations c
-on a.student_id=c.student_id and b.subject_name=c.subject_name
-group by a.student_id,a.student_name,b.subject_name
-order by a.student_id , b.subject_name;
